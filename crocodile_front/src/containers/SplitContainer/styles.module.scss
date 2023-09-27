@@ -1,0 +1,18 @@
+@import "../../vars";
+.leftBox {
+  background-color: $blue-primary-color;
+  flex-basis: 50%;
+}
+
+.rightBox {
+  background-color: $blue-secondary-color;
+  flex-basis: 50%;
+}
+$height: 70vh;
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: $height;
+  margin-top: (100vh - $height)/2;
+  overflow: hidden;
+}
