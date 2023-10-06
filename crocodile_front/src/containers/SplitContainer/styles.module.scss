@@ -20,6 +20,6 @@ $height: 75vh;
   display: flex;
   justify-content: space-between;
   height: $height;
-  margin-top: (100vh - $height)/2;
+  margin-top: calc((100vh - $height) / 2);
   overflow: hidden;
 }

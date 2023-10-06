@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "\\\\wsl.localhost\\Ubuntu\\root\\devofy\\code\\crocodile_momorep\\crocodile_back\\crocodile_back.csproj": {}
+    "/root/devofy/code/crocodile_momorep/crocodile_back/crocodile_back.csproj": {}
   },
   "projects": {
-    "\\\\wsl.localhost\\Ubuntu\\root\\devofy\\code\\crocodile_momorep\\crocodile_back\\crocodile_back.csproj": {
+    "/root/devofy/code/crocodile_momorep/crocodile_back/crocodile_back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\wsl.localhost\\Ubuntu\\root\\devofy\\code\\crocodile_momorep\\crocodile_back\\crocodile_back.csproj",
+        "projectUniqueName": "/root/devofy/code/crocodile_momorep/crocodile_back/crocodile_back.csproj",
         "projectName": "crocodile_back",
-        "projectPath": "\\\\wsl.localhost\\Ubuntu\\root\\devofy\\code\\crocodile_momorep\\crocodile_back\\crocodile_back.csproj",
-        "packagesPath": "C:\\Users\\Артемий\\.nuget\\packages\\",
-        "outputPath": "\\\\wsl.localhost\\Ubuntu\\root\\devofy\\code\\crocodile_momorep\\crocodile_back\\obj\\",
+        "projectPath": "/root/devofy/code/crocodile_momorep/crocodile_back/crocodile_back.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/root/devofy/code/crocodile_momorep/crocodile_back/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Артемий\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Users\\Артемий\\.dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -67,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\Артемий\\.dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.111/RuntimeIdentifierGraph.json"
         }
       }
     }
