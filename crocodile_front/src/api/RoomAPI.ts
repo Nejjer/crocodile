@@ -11,10 +11,8 @@ class RoomAPI {
   /**
    * Присоединяемся к комнате
    */
-  public async join(id: string) {
-    return axiosInstance.post<string>('/room/join', id, {
-      headers: { 'Content-Type': 'text/plain' },
-    });
+  public async join(roomId: string) {
+    return axiosInstance.get<string>(`/room/join/${roomId}`);
   }
 }
 

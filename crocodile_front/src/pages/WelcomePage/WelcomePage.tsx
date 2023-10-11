@@ -39,8 +39,12 @@ const WelcomePage: FC = () => {
           loading={joinFetch.isFetching}
         >
           <TextField
-            onChange={(e) => setRoomId(e.target.value)}
+            onChange={(e) => {
+              setRoomId(e.target.value);
+              joinFetch.remove();
+            }}
             value={roomId}
+            error={!!joinFetch.error}
           />
         </DataInputContainer>
       }
