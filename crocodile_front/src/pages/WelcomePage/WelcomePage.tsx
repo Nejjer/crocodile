@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 import { roomApi } from '../../api/RoomAPI.ts';
 import { observer } from 'mobx-react';
 import { AppStoreContext, StoreCtx } from '../../stores/WithStore.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const WelcomePage: FC = () => {
   const {
@@ -15,13 +16,18 @@ const WelcomePage: FC = () => {
   const createFetch = useQuery({
     queryKey: 'create',
     queryFn: roomApi.create,
-    onSuccess: (data) => (roomStore.id = data.data),
+    onSuccess: (data) => onSuccess(data.data),
   });
   const joinFetch = useQuery({
     queryKey: 'join',
     queryFn: () => roomApi.join(roomId),
-    onSuccess: (data) => (roomStore.id = data.data),
+    onSuccess: (data) => onSuccess(data.data),
   });
+  const navigate = useNavigate();
+  const onSuccess = (id: string) => {
+    roomStore.id = id;
+    navigate('/sign-up');
+  };
 
   return (
     <SplitContainer

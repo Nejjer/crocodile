@@ -5,6 +5,7 @@ import { WelcomePage } from './pages/WelcomePage/WelcomePage.tsx';
 import { theme } from './theme.ts';
 import { WithStore } from './stores/WithStore.tsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { SignUp } from './pages/SignUp/SignUp.tsx';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -28,6 +29,7 @@ export const App: FC = () => {
           <Container>
             <Routes>
               <Route path={'/welcome'} element={<WelcomePage />} />
+              <Route path={'/sign-up'} element={<SignUp />} />
               <Route path={'/'} element={<Navigate to={'/welcome'} />} />
             </Routes>
           </Container>

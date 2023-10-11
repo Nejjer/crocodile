@@ -4,7 +4,7 @@ import classes from './styles.module.scss';
 import { LoadingButton } from '@mui/lab';
 
 interface Props {
-  text: string;
+  text?: string;
   onClick: () => void;
   btnText: string;
   loading: boolean;

@@ -5,7 +5,7 @@ namespace crocodile_back.Controllers;
 
 [ApiController]
 [Route("room")]
-public class UserController : Controller
+public class RoomController : Controller
 {
     [HttpPost("create")]
     public IActionResult CreateRoom()
@@ -18,12 +18,13 @@ public class UserController : Controller
     }
     
     [HttpPost("join")]
-    public IActionResult JoinRoom([FromBody] string roomId)
+    public IActionResult JoinRoom([FromRoute] string roomId, [FromBody] CreateProfileRequest req)
     {
         Response.Headers["content-type"] = "application/json";
 
         if (StaticData.Rooms.TryGetValue(roomId, out var room))
         {
+            Logger.Write("Find Room" + room.id);
             return Ok(room.id);
         }
 

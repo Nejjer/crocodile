@@ -6,6 +6,7 @@ public class Room
 {
     public string id { get; set; }
     public string Admin { get; set; }
+    public Dictionary<string, User> UserList = new();
 
     public Room(string id)
     {

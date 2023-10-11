@@ -1,0 +1,11 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  p {
+    margin: 0;
+  }
+  span {
+    color: #fbfbfb;
+  }
+}

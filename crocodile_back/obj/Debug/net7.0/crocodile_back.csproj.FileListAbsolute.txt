@@ -31,8 +31,10 @@
 //wsl.localhost/Ubuntu/root/devofy/code/crocodile_momorep/crocodile_back/obj/Debug/net7.0/crocodile_back.pdb
 //wsl.localhost/Ubuntu/root/devofy/code/crocodile_momorep/crocodile_back/obj/Debug/net7.0/crocodile_back.genruntimeconfig.cache
 //wsl.localhost/Ubuntu/root/devofy/code/crocodile_momorep/crocodile_back/obj/Debug/net7.0/ref/crocodile_back.dll
+//wsl.localhost/Ubuntu/root/devofy/code/crocodile_momorep/crocodile_back/bin/Debug/net7.0/global.json
 /root/devofy/code/crocodile_momorep/crocodile_back/bin/Debug/net7.0/appsettings.Development.json
 /root/devofy/code/crocodile_momorep/crocodile_back/bin/Debug/net7.0/appsettings.json
+/root/devofy/code/crocodile_momorep/crocodile_back/bin/Debug/net7.0/global.json
 /root/devofy/code/crocodile_momorep/crocodile_back/bin/Debug/net7.0/crocodile_back
 /root/devofy/code/crocodile_momorep/crocodile_back/bin/Debug/net7.0/crocodile_back.deps.json
 /root/devofy/code/crocodile_momorep/crocodile_back/bin/Debug/net7.0/crocodile_back.runtimeconfig.json
