@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const WelcomePage: FC = () => {
   const {
-    appStore: { roomStore },
+    appStore: { roomStore, chatStore },
   } = useContext<AppStoreContext>(StoreCtx);
   const [roomId, setRoomId] = useState('');
   const createFetch = useQuery({

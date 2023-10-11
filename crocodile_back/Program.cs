@@ -1,4 +1,4 @@
-
+using crocodile_back.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -19,7 +19,7 @@ app.UseCors(x => x
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-//app.MapHub<ChatHub>("/chat");
+app.MapHub<ChatHub>("/chat");
 //app.MapHub<CanvasHub>("/canvas");
 app.MapControllers();
 //StaticData.ParseDictionaryWords();
