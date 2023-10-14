@@ -8,6 +8,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { SignUp } from './pages/SignUp/SignUp.tsx';
 import { SNACKBAR_DELAY } from './stores/snackbarStore.ts';
 import { observer } from 'mobx-react';
+import { ROUTES } from './constants.ts';
+import { Game } from './pages/Game/Game.tsx';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -33,9 +35,10 @@ const App: FC = () => {
         <CssBaseline />
         <Container>
           <Routes>
-            <Route path={'/welcome'} element={<WelcomePage />} />
-            <Route path={'/sign-up'} element={<SignUp />} />
-            <Route path={'/'} element={<Navigate to={'/welcome'} />} />
+            <Route path={ROUTES.WELCOME} element={<WelcomePage />} />
+            <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+            <Route path={ROUTES.GAME} element={<Game />} />
+            <Route index element={<Navigate to={ROUTES.WELCOME} />} />
           </Routes>
           <Snackbar
             open={snackbarStore.isOpen}

@@ -7,10 +7,11 @@ import { roomApi } from '../../api/RoomAPI.ts';
 import { observer } from 'mobx-react';
 import { AppStoreContext, StoreCtx } from '../../stores/WithStore.tsx';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../constants.ts';
 
 const WelcomePage: FC = () => {
   const {
-    appStore: { roomStore, chatStore },
+    appStore: { roomStore },
   } = useContext<AppStoreContext>(StoreCtx);
   const [roomId, setRoomId] = useState('');
   const createFetch = useQuery({
@@ -26,7 +27,7 @@ const WelcomePage: FC = () => {
   const navigate = useNavigate();
   const onSuccess = (id: string) => {
     roomStore.id = id;
-    navigate('/sign-up');
+    navigate(ROUTES.SIGN_UP);
   };
 
   return (

@@ -8,23 +8,30 @@ import { useQuery } from 'react-query';
 import { profileApi } from '../../api/ProfileAPI.ts';
 import { useNavigate } from 'react-router-dom';
 import Info from './Info.tsx';
+import { ROUTES } from '../../constants.ts';
 
 const SignUp: FC = () => {
   const {
-    appStore: { roomStore },
+    appStore: { profileStore, roomStore },
   } = useContext<AppStoreContext>(StoreCtx);
   const [name, setName] = useState('');
   const loginFetch = useQuery({
     queryKey: 'login',
     queryFn: () => profileApi.login(roomStore.id, name),
-    onSuccess: (data) => (roomStore.id = data.data),
+    onSuccess: (data) => onSuccess(data.data),
   });
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!roomStore.id) navigate('/welcome');
+    if (!roomStore.id) navigate(ROUTES.WELCOME);
   });
+
+  const onSuccess = (profileId: string) => {
+    profileStore.id = profileId;
+    profileStore.name = name;
+    navigate(ROUTES.GAME);
+  };
 
   return (
     <SplitContainer

@@ -1,8 +1,9 @@
 import axios, { AxiosError } from 'axios';
 import { appStore } from '../stores/WithStore.tsx';
+import { API_PATH } from '../constants.ts';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5296/',
+  baseURL: API_PATH,
   timeout: 10000,
 });
 
@@ -16,3 +17,8 @@ axiosInstance.interceptors.response.use(
     throw error;
   },
 );
+
+export interface IConnectionInfo {
+  connectionId: string;
+  roomId: string;
+}
