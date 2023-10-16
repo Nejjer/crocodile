@@ -1,5 +1,5 @@
-import { createTheme } from "@mui/material";
-import Geometria from "./assets/Geometria.ttf";
+import { createTheme } from '@mui/material';
+import Geometria from './assets/Geometria.ttf';
 
 const borderRadius = 15;
 export const theme = createTheme({
@@ -8,7 +8,7 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#92b4f4",
+      main: '#92b4f4',
     },
   },
   components: {
@@ -16,35 +16,35 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius,
-          boxShadow: "2px 6px 10px 1px rgba(0, 0, 0, 0.3)",
+          boxShadow: '2px 6px 10px 1px rgba(0, 0, 0, 0.3)',
         },
       },
     },
     MuiContainer: {
       styleOverrides: {
         root: {
-          height: "100%",
+          height: '100%',
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          boxShadow: "none",
-          textTransform: "none",
+          boxShadow: 'none',
+          textTransform: 'none',
           borderRadius: 10,
-          fontSize: "1.15rem",
+          fontSize: '1.15rem',
         },
       },
       defaultProps: {
-        variant: "contained",
+        variant: 'contained',
       },
     },
     MuiTextField: {
       defaultProps: {
         InputProps: {
           sx: {
-            borderRadius: "10px",
+            borderRadius: '10px',
             borderWidth: 5,
           },
         },

@@ -5,7 +5,7 @@ import { API_PATH } from '../constants.ts';
 
 interface IMessage {
   id: string;
-  test: string;
+  text: string;
 }
 
 export class ChatStore {
@@ -17,6 +17,7 @@ export class ChatStore {
   }
 
   public async init() {
+    if (this.connection) return;
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl(API_PATH + '/chat')
       .configureLogging(signalR.LogLevel.Information)

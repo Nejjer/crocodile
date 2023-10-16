@@ -1,10 +1,13 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { AppStoreContext, StoreCtx } from '../../stores/WithStore.tsx';
-import { Button } from '@mui/material';
+import { Button, Paper, TextField } from '@mui/material';
 import { chatAPI } from '../../api/ChatAPI.ts';
+import { Message } from '../Message';
 
 const Chat: FC = () => {
+  const [message, setMessage] = useState('');
+
   const {
     appStore: { chatStore, roomStore },
   } = useContext<AppStoreContext>(StoreCtx);
@@ -17,12 +20,18 @@ const Chat: FC = () => {
   }, [chatStore, roomStore.id]);
 
   return (
-    <div>
-      {chatStore.messages.length}{' '}
-      <Button onClick={() => chatAPI.sendMessage('texttext', roomStore.id)}>
+    <Paper>
+      {chatStore.messages.map((message) => (
+        <Message key={message.id} text={message.text} author={message.id} />
+      ))}
+      <TextField onChange={(e) => setMessage(e.target.value)} />
+      <Button
+        disabled={!message}
+        onClick={() => chatAPI.sendMessage(message, roomStore.id)}
+      >
         Send
       </Button>
-    </div>
+    </Paper>
   );
 };
 
