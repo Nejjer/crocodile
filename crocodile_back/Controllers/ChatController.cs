@@ -21,7 +21,7 @@ public class ChatController : Controller
     public async Task AddMessage([FromBody] MessageRequest requestMessage)
     {
         var message = new Message(requestMessage.text, requestMessage.roomId,
-            Guid.NewGuid().ToString().Substring(0, 10));
+            Guid.NewGuid().ToString().Substring(0, 11));
         StaticData.Messages[message.roomId].Add(message);
         await _chatHub.Clients.Group(message.roomId).ReceiveMessage(message);
     }
