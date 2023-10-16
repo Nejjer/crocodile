@@ -19,16 +19,17 @@ const Chat: FC = () => {
     });
   }, [chatStore, roomStore.id]);
 
+  const handleSendMessage = () => {
+    chatAPI.sendMessage(message, roomStore.id).then(() => setMessage(''));
+  };
+
   return (
     <Paper>
       {chatStore.messages.map((message) => (
         <Message key={message.id} text={message.text} author={message.id} />
       ))}
-      <TextField onChange={(e) => setMessage(e.target.value)} />
-      <Button
-        disabled={!message}
-        onClick={() => chatAPI.sendMessage(message, roomStore.id)}
-      >
+      <TextField value={message} onChange={(e) => setMessage(e.target.value)} />
+      <Button disabled={!message} onClick={handleSendMessage}>
         Send
       </Button>
     </Paper>
