@@ -6,6 +6,7 @@ import { API_PATH } from '../constants.ts';
 interface IMessage {
   id: string;
   text: string;
+  author: string;
 }
 
 export class ChatStore {

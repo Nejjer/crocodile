@@ -10,6 +10,9 @@ export const theme = createTheme({
     primary: {
       main: '#92b4f4',
     },
+    secondary: {
+      main: '#92b4f4',
+    },
   },
   components: {
     MuiPaper: {

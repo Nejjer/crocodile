@@ -1,6 +1,7 @@
-import { Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
+import classes from './styles.module.scss';
 
 interface Props {
   text: string;
@@ -10,8 +11,16 @@ interface Props {
 const Message: FC<Props> = ({ author, text }) => {
   return (
     <Stack direction={'column'}>
-      <Typography>{author}</Typography>
-      <Typography>{text}</Typography>
+      <Typography
+        fontWeight={'bold'}
+        color={'secondary'}
+        sx={{ paddingLeft: 1 }}
+      >
+        {author}:
+      </Typography>
+      <Box className={classes.boxMessage}>
+        <Typography>{text}</Typography>
+      </Box>
     </Stack>
   );
 };

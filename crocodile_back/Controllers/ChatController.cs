@@ -21,8 +21,15 @@ public class ChatController : Controller
     public async Task AddMessage([FromBody] MessageRequest requestMessage)
     {
         var message = new Message(requestMessage.text, requestMessage.roomId,
-            Guid.NewGuid().ToString().Substring(0, 10));
-        StaticData.Messages[message.roomId].Add(message);
+            Guid.NewGuid().ToString().Substring(0, 10), requestMessage.name);
+        if (StaticData.Messages.TryGetValue(message.roomId, out var messages))
+        {
+            messages.Add(message);
+        }
+        else
+        {
+            Logger.Write($"Not found room id: {requestMessage.roomId}");
+        }
         await _chatHub.Clients.Group(message.roomId).ReceiveMessage(message);
     }
 
@@ -58,5 +65,7 @@ public class ChatController : Controller
     {
         public string text { get; set; }
         public string roomId { get; set; }
+        
+        public string name { get; set; }
     }
 }
