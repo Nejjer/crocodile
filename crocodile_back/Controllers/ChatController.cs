@@ -22,7 +22,7 @@ public class ChatController : Controller
     {
         var message = new Message(requestMessage.text, requestMessage.roomId,
             Guid.NewGuid().ToString().Substring(0, 10), requestMessage.name);
-        if (StaticData.Messages.TryGetValue(message.roomId, out var messages))
+        if (StaticData.MessagesMap.TryGetValue(message.roomId, out var messages))
         {
             messages.Add(message);
         }
@@ -43,8 +43,8 @@ public class ChatController : Controller
     [HttpPost("joinChatHub")]
     public async Task CreateRoom([FromBody] IConnectionInfo connectionInfo)
     {
-        if (!StaticData.Messages.ContainsKey(connectionInfo.roomId))
-            StaticData.Messages[connectionInfo.roomId] = new List<Message>();
+        if (!StaticData.MessagesMap.ContainsKey(connectionInfo.roomId))
+            StaticData.MessagesMap[connectionInfo.roomId] = new List<Message>();
         await _chatHub.Groups.AddToGroupAsync(connectionInfo.connectionId, connectionInfo.roomId);
     }
 
@@ -53,9 +53,9 @@ public class ChatController : Controller
     {
         Response.Headers["content-type"] = "application/json";
         var data = JsonSerializer.Serialize(new List<Message>());
-        if (StaticData.Messages.ContainsKey(Request.Headers["room-id"]))
+        if (StaticData.MessagesMap.ContainsKey(Request.Headers["room-id"]))
         {
-            data = JsonSerializer.Serialize(StaticData.Messages[Request.Headers["room-id"]]);
+            data = JsonSerializer.Serialize(StaticData.MessagesMap[Request.Headers["room-id"]]);
 
         }
         return Ok(data);

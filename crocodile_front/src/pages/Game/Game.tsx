@@ -4,6 +4,7 @@ import { Chat } from '../../components/Chat';
 import { ROUTES } from '../../constants.ts';
 import { AppStoreContext, StoreCtx } from '../../stores/WithStore.tsx';
 import { useNavigate } from 'react-router-dom';
+import { DrawTable } from '../../components/Canvas';
 
 const Game: FC = () => {
   const {
@@ -19,6 +20,7 @@ const Game: FC = () => {
   return (
     <div>
       <Chat />
+      <DrawTable />
     </div>
   );
 };
