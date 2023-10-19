@@ -1,0 +1,9 @@
+import React, { FC } from 'react';
+
+#STYLE#
+
+interface Props {}
+
+export const #NAME#: FC<Props> = (props) => {
+  return <div />;
+};
