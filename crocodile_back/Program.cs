@@ -20,7 +20,7 @@ app.UseCors(x => x
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapHub<ChatHub>("/chat");
-//app.MapHub<CanvasHub>("/canvas");
+app.MapHub<CanvasHub>("/canvas");
 app.MapControllers();
 //StaticData.ParseDictionaryWords();
 app.Run();

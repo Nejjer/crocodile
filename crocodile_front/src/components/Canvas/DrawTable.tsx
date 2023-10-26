@@ -1,7 +1,5 @@
-import React, { FC, useContext, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { AppStoreContext, StoreCtx } from '../../stores/WithStore.tsx';
-import { canvasAPI } from '../../api/canvasAPI.ts';
 
 interface Point {
   x: number;
@@ -18,17 +16,17 @@ const DrawTable: FC = () => {
   //const [penSize, setPenSize] = useState(10);
   //const [penColor, setPenColor] = useState('#000');
 
-  const {
-    appStore: { roomStore, canvasStore },
-  } = useContext<AppStoreContext>(StoreCtx);
+  // const {
+  //   appStore: { roomStore, canvasStore },
+  // } = useContext<AppStoreContext>(StoreCtx);
 
   /** Инициализируем стор */
-  useEffect(() => {
-    canvasStore.init().then((connectionId) => {
-      connectionId &&
-        canvasAPI.joinChatHub({ connectionId, roomId: roomStore.id });
-    });
-  }, [canvasStore, roomStore.id]);
+  // useEffect(() => {
+  //   canvasStore.init().then((connectionId) => {
+  //     connectionId &&
+  //       canvasAPI.joinChatHub({ connectionId, roomId: roomStore.id });
+  //   });
+  // }, [canvasStore, roomStore.id]);
 
   useEffect(() => {
     const canvas = canvasRef.current;

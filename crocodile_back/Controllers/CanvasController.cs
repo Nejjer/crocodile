@@ -33,7 +33,7 @@ namespace crocodile_back.Controllers
             return Ok(StaticData.CanvasMap[Request.Headers["room-id"]]);
         }
         
-        [HttpPost("joinRoom")]
+        [HttpPost("joinCanvasHub")]
         public async Task CreateRoom([FromBody] IConnectionInfo connectionInfo)
         {
             StaticData.CanvasMap.TryAdd(connectionInfo.roomId, new Canvas());

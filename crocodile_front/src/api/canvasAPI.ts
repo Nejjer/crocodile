@@ -6,7 +6,7 @@ class CanvasAPI {
   // }
 
   public async joinChatHub(connectionInfo: IConnectionInfo) {
-    await axiosInstance.post('/chat/joinChatHub', connectionInfo);
+    await axiosInstance.post('/canvas/joinCanvasHub', connectionInfo);
   }
 }
 
