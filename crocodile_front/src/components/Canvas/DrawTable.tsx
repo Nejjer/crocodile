@@ -24,6 +24,7 @@ const DrawTable: FC = () => {
     });
   }, [canvasStore, roomStore.id]);
 
+  /** Инициализируем канвас */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -37,14 +38,6 @@ const DrawTable: FC = () => {
       document.removeEventListener('keydown', handleUndoKeyDown);
     };
   }, []);
-
-  const handleStartDraw = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    canvasStore.startDraw(getCurrentPoint(e));
-  };
-
-  const handleEndDraw = () => {
-    canvasStore.endDraw();
-  };
 
   const handleUndoKeyDown = (e: KeyboardEvent) => {
     if ((e.ctrlKey || e.metaKey) && e.code === 'KeyZ') {
@@ -68,19 +61,15 @@ const DrawTable: FC = () => {
     }
   };
 
-  const handleChangeMousePos = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    canvasStore.draw(getCurrentPoint(e));
-  };
-
   return (
     <div className={classes.canvasWrapper}>
       <canvas
         className={clsx(classes.canvas, classes.unselectable)}
         ref={canvasRef}
-        onMouseDown={handleStartDraw}
-        onMouseMove={handleChangeMousePos}
-        onMouseUp={handleEndDraw}
-        onMouseLeave={handleEndDraw}
+        onMouseDown={(e) => canvasStore.startDraw(getCurrentPoint(e))}
+        onMouseMove={(e) => canvasStore.draw(getCurrentPoint(e))}
+        onMouseUp={canvasStore.endDraw}
+        onMouseLeave={canvasStore.endDraw}
       />
     </div>
   );

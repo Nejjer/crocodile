@@ -21,9 +21,9 @@ namespace crocodile_back.Controllers
         [HttpPost("post")]
         public async Task Post([FromBody] Canvas img)
         {
-            if (StaticData.CanvasMap.TryGetValue(img.roomName, out var canvas))
-                canvas.url = img.url;
-            await _canvasHub.Clients.Group(img.roomName).ReceiveCanvas(img);
+            if (StaticData.CanvasMap.TryGetValue(img.roomId, out var canvas))
+                canvas.base64 = img.base64;
+            await _canvasHub.Clients.Group(img.roomId).ReceiveCanvas(img.base64);
         }
         
         [HttpGet("get")]
@@ -47,7 +47,7 @@ namespace crocodile_back.Controllers
     }
     public class Canvas
     {
-        public string url { get; set; }
-        public string roomName { get; set; }
+        public string base64 { get; set; }
+        public string roomId { get; set; }
     }
 }

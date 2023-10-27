@@ -4,5 +4,5 @@ namespace crocodile_back.Clients;
 
 public interface ICanvasClient
 {
-    Task ReceiveCanvas(Canvas canvas);
+    Task ReceiveCanvas(string base64);
 }

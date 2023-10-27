@@ -5,16 +5,12 @@ import { API_PATH } from '../constants.ts';
 import { canvasAPI } from '../api/canvasAPI.ts';
 import { appStore } from './WithStore.tsx';
 
-interface ICanvas {
-  base64: string;
-}
 export interface Point {
   x: number;
   y: number;
 }
 
 export class CanvasStore {
-  public canvasData: ICanvas = { base64: '' };
   private connection: HubConnection | null = null;
   private _isDrawing = false;
   private _prevPoint: Point = { x: 0, y: 0 };

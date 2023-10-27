@@ -7,8 +7,8 @@ namespace crocodile_back.Hubs;
 
 public class CanvasHub : Hub<ICanvasClient>
 {
-    public async Task SendMessage([FromBody]Canvas canvas)
+    public async Task SendMessage([FromBody]string base64)
     {
-        await Clients.All.ReceiveCanvas(canvas);
+        await Clients.All.ReceiveCanvas(base64);
     }
 }
