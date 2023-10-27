@@ -66,6 +66,7 @@ export class CanvasStore {
   }
 
   public endDraw() {
+    console.log(this);
     this._isDrawing = false;
     if (!this._canvasContext) return;
     /** Складываем в массив предыдущих изображений **/

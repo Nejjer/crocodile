@@ -5,7 +5,7 @@ class CanvasAPI {
     await axiosInstance.post('/canvas/post', { base64, roomId });
   }
 
-  public async joinChatHub(connectionInfo: IConnectionInfo) {
+  public async joinCanvasHub(connectionInfo: IConnectionInfo) {
     await axiosInstance.post('/canvas/joinCanvasHub', connectionInfo);
   }
 }

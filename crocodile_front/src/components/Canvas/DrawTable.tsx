@@ -20,7 +20,7 @@ const DrawTable: FC = () => {
   useEffect(() => {
     canvasStore.init().then((connectionId) => {
       connectionId &&
-        canvasAPI.joinChatHub({ connectionId, roomId: roomStore.id });
+        canvasAPI.joinCanvasHub({ connectionId, roomId: roomStore.id });
     });
   }, [canvasStore, roomStore.id]);
 
@@ -68,8 +68,9 @@ const DrawTable: FC = () => {
         ref={canvasRef}
         onMouseDown={(e) => canvasStore.startDraw(getCurrentPoint(e))}
         onMouseMove={(e) => canvasStore.draw(getCurrentPoint(e))}
-        onMouseUp={canvasStore.endDraw}
-        onMouseLeave={canvasStore.endDraw}
+        /** Обязательно создается функция, иначе в сторе нет контекста this */
+        onMouseUp={() => canvasStore.endDraw()}
+        onMouseLeave={() => canvasStore.endDraw()}
       />
     </div>
   );
