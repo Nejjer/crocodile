@@ -1,0 +1,17 @@
+@import '../../vars';
+
+.canvas {
+  height: 100%;
+  width: 100%;
+  border: 2px solid $blue-secondary-color;
+  border-radius: 15px;
+}
+
+.canvasWrapper {
+}
+
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
