@@ -5,6 +5,7 @@ import classes from './styles.module.scss';
 import { clsx } from 'clsx';
 import { AppStoreContext, StoreCtx } from '../../stores/WithStore.tsx';
 import { Point } from '../../stores/canvasStore.ts';
+import { canvasAPI } from '../../api/canvasAPI.ts';
 
 const scale = 10;
 
@@ -16,12 +17,12 @@ const DrawTable: FC = () => {
   } = useContext<AppStoreContext>(StoreCtx);
 
   /** Инициализируем стор */
-  // useEffect(() => {
-  //   canvasStore.init().then((connectionId) => {
-  //     connectionId &&
-  //       canvasAPI.joinChatHub({ connectionId, roomId: roomStore.id });
-  //   });
-  // }, [canvasStore, roomStore.id]);
+  useEffect(() => {
+    canvasStore.init().then((connectionId) => {
+      connectionId &&
+        canvasAPI.joinChatHub({ connectionId, roomId: roomStore.id });
+    });
+  }, [canvasStore, roomStore.id]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -29,7 +30,7 @@ const DrawTable: FC = () => {
       const ctx = canvas?.getContext('2d') as CanvasRenderingContext2D;
       canvas.width = canvas.width * scale;
       canvas.height = canvas.height * scale;
-      canvasStore.setCanvasContext(ctx, canvas);
+      canvasStore.setCanvasContext(ctx);
     }
     document.addEventListener('keydown', handleUndoKeyDown, false);
     return () => {

@@ -2,6 +2,8 @@ import * as signalR from '@microsoft/signalr';
 import { HubConnection } from '@microsoft/signalr';
 import { makeAutoObservable } from 'mobx';
 import { API_PATH } from '../constants.ts';
+import { canvasAPI } from '../api/canvasAPI.ts';
+import { appStore } from './WithStore.tsx';
 
 interface ICanvas {
   base64: string;
@@ -18,7 +20,6 @@ export class CanvasStore {
   private _prevPoint: Point = { x: 0, y: 0 };
   private _canvasContext: CanvasRenderingContext2D | null = null;
   private _stackPrevImages: ImageData[] = [];
-  private _canvasSize: Point = { x: 0, y: 0 };
 
   constructor() {
     makeAutoObservable(this);
@@ -35,26 +36,29 @@ export class CanvasStore {
 
     await this.connection.start();
 
-    this.connection.on('ReceiveMessage', (args) => this.setCanvas(args));
+    this.connection.on('ReceiveCanvas', (args) => this.drawCanvas(args));
 
     return this.connection.connectionId;
   }
 
-  private setCanvas(base64: string) {
-    this.canvasData.base64 = base64;
+  private drawCanvas(base64: string) {
+    const ctx = this._canvasContext;
+    if (!ctx) return;
+    const img = new Image();
+    img.onload = () => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+    };
+    img.src = base64;
   }
 
-  public setCanvasContext(
-    ctx: CanvasRenderingContext2D | null,
-    canvas: HTMLCanvasElement,
-  ) {
+  public setCanvasContext(ctx: CanvasRenderingContext2D | null) {
     if (!ctx) return;
-    this._canvasSize = { x: canvas.width, y: canvas.height };
-    this._stackPrevImages.push(
-      ctx.getImageData(0, 0, canvas.width, canvas.height),
-    );
     this._canvasContext = ctx;
     this._canvasContext.lineCap = 'round';
+    this._stackPrevImages.push(
+      ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height),
+    );
   }
 
   public startDraw(point?: Point) {
@@ -67,16 +71,21 @@ export class CanvasStore {
 
   public endDraw() {
     this._isDrawing = false;
+    if (!this._canvasContext) return;
     /** Складываем в массив предыдущих изображений **/
-    this._canvasContext &&
-      this._stackPrevImages.push(
-        this._canvasContext.getImageData(
-          0,
-          0,
-          this._canvasSize.x,
-          this._canvasSize.y,
-        ),
-      );
+    this._stackPrevImages.push(
+      this._canvasContext.getImageData(
+        0,
+        0,
+        this._canvasContext.canvas.width,
+        this._canvasContext.canvas.height,
+      ),
+    );
+    /** Отправляем изображение всем участникам */
+    canvasAPI.sendCanvas(
+      this._canvasContext.canvas.toDataURL(),
+      appStore.roomStore.id,
+    );
   }
 
   public draw(point?: Point) {

@@ -4,6 +4,7 @@ import { Chat } from '../../components/Chat';
 import { AppStoreContext, StoreCtx } from '../../stores/WithStore.tsx';
 import { useNavigate } from 'react-router-dom';
 import { DrawTable } from '../../components/Canvas';
+import { ROUTES } from '../../constants.ts';
 
 const Game: FC = () => {
   const {
@@ -13,7 +14,7 @@ const Game: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //if (!roomStore.id) navigate(ROUTES.WELCOME);
+    if (!roomStore.id) navigate(ROUTES.WELCOME);
   });
 
   return (

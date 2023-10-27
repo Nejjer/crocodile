@@ -27,6 +27,7 @@ const WelcomePage: FC = () => {
   const navigate = useNavigate();
   const onSuccess = (id: string) => {
     roomStore.id = id;
+    console.log(id);
     navigate(ROUTES.SIGN_UP);
   };
 
