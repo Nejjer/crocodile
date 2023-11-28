@@ -1,15 +1,15 @@
-﻿using System.Text.RegularExpressions;
-
-namespace crocodile_back.Models;
+﻿namespace crocodile_back.Models;
 
 public class Room
 {
-    public string id { get; set; }
-    public string Admin { get; set; }
-    public Dictionary<string, User> UserList = new();
-
     public Room(string id)
     {
         this.id = id;
+        GameState = new GameState(this);
     }
+
+
+    public string id { get; set; }
+
+    public GameState GameState { get; set; }
 }
